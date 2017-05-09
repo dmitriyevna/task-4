@@ -1,0 +1,29 @@
+.song
+	height: 420px 
+	color: green
+	font-size: 1.2em 
+	&__letter
+		position: relative
+		display: inline-block
+		margin-left: -0.1em 
+		transform-origin: center center
+	&__in
+		position: relative
+		top: 120px
+		max-width: 600px
+		margin: 0 auto  
+		text-align: center 
+		line-height: 1.2em 
+	&__spacing
+		display: inline-block 
+		width: 0.3em
+		height: 1em
+		
+@for $i from 1 through 102 
+	$scale: random(5)
+	$rotate: random(720) - 360
+	$x: random(400) - 200
+	$y: random(200) - 100 
+	.letter-#{$i}
+		transform: translate($x+px, $y+px) rotate($rotate + deg) scale($scale, $scale)
+		

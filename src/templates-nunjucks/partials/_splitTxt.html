@@ -1,0 +1,10 @@
+{% for letter in song %}
+	{% if letter == ' ' %}
+	<span class="song__spacing"></span>
+	{% elif letter == letter | upper %}
+	<br/>
+	<span class="song__letter letter-{{loop.index}}">{{ letter }}</span>
+	{% else %}
+	<span class="song__letter letter-{{loop.index}}">{{ letter }}</span>
+	{% endif %}
+{% endfor %}

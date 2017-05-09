@@ -1,0 +1,26 @@
+---
+
+title: Start page
+STYLES: [
+	'style'
+]
+SCRIPTS: [
+	'bundle'
+]
+
+song: I hear my battle symphony All the world in front of me If my armor breaks I will fuse it back together
+
+---
+
+{% extends "./layouts/_layout.html" %}
+
+{% block content %}
+<!-- begin song -->
+<div class="song">
+	<p class="song__in">
+		{% set text = song %}
+		{% include './partials/_splitTxt.html' %}
+	</p>
+</div>	
+<!-- end song -->
+{% endblock %}

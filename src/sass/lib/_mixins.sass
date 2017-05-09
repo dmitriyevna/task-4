@@ -1,0 +1,92 @@
+// start: Font mixins //
+
+//Import font
+
+=font-face( $name, $path )
+	
+	@font-face
+		font-family: $name
+		font-weight: normal
+		font-style: normal
+			
+		@each $item in $font-formats 
+			
+			$format: $item
+			
+			@if $item == 'ttf'
+				$format: 'truetype'	
+
+			src: url('#{ $path }/#{ $name }.#{ $item }') format ('#{ $format }')
+
+//Indicate font
+
+=font( $font-family, $size, $color, $line-height: normal, $weight : normal, $style : normal )
+
+	font-family: $font-family
+	font-size: $size
+	color: $color  
+	line-height: $line-height  
+	font-weight: $weight
+	font-style: $style  
+	
+//CSS-lock
+
+=css-lock($max, $min, $max-width: 1600, $min-width: 320, $property: font-size)
+
+	#{$property}: $max + px
+	
+	#{$property}: calc(#{$min}px + (#{$max} - #{$min}) * ((100vw - #{$min-width}px) / (#{$max-width} - #{$min-width})))
+	
+	@media (max-width: #{$min-width}px)
+		#{$property}: $min + px
+	@media (min-width: #{$max-width}px)
+		#{$property}: $max + px
+
+// end //
+
+// start: Media queries mixin			
+
+=mq( $type )
+
+	@if $type == 'mobile'
+	
+		$size: $mobile
+		
+	@else if $type == 'tablet'
+	
+		$size: $tablet
+		
+	@else if $type == 'desktop'
+	
+		$size: $desktop
+	
+	@else if $type == 'desktopHD'
+	
+		$size: $desktopHD
+	
+	@media only screen and ( max-width: $size )
+			@content
+	
+
+// end //
+
+// start: Elements position //
+
+=fl
+	float: left
+=fr
+	float: right
+// end	 			
+
+// start: Animations //
+
+=transition( $property, $duration, $timing-function, $delay : 0s )
+
+	-webkit-transition: $property $duration $timing-function $delay 
+	-moz-transition: $property $duration $timing-function $delay 
+	-ms-transition: $property $duration $timing-function $delay 
+	-o-transition: $property $duration $timing-function $delay 
+	transition: $property $duration $timing-function $delay 
+
+// end //
+
